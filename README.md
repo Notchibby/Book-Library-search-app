@@ -12,13 +12,13 @@ This project allows to practice refactoring a restfull API application to a MERN
 
 
 ## Screenshots
-![screenshot-of-the-application-to-get-allthoughts](https://github.com/Notchibby/Social-network-backend/blob/main/assets/images/allthoughts.png)
+![screenshot-of-the-application-signin](https://github.com/Notchibby/Book-Library-search-app/blob/main/screenshots/login.png)
 
 -----------------------------------------------------------------------------------------------------------
 
-![screenshot-of-the-application-to-get-singleuser](https://github.com/Notchibby/Social-network-backend/blob/main/assets/images/singleuser.png)
+![screenshot-of-the-application-searching-for-lord-of-the-rings](https://github.com/Notchibby/Book-Library-search-app/blob/main/screenshots/search-result.png)
 
----------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 
 
 ## Questions
