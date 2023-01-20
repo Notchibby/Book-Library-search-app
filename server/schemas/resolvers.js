@@ -1,4 +1,4 @@
-const { User, Thought } = require("../models");
+const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 
@@ -15,23 +15,17 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    // get a user by username
-    user: async (parent, { username }) => {
-      return User.findOne({ username })
-        .select("-__v -password")
-        .populate("books");
-    },
-    // get a user by id
-    userById: async (parent, { _id }) => {
-      return User.findOne({ _id }).select("-__v -password").populate("books");
-    },
   },
   Mutation: {
-    createUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+    addUser: async (parent, args) => {
+      try {
+        const user = await User.create(args);
 
-      return { token, user };
+        const token = signToken(user);
+        return { token, user };
+      } catch (err) {
+        console.log(err);
+      }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -51,11 +45,9 @@ const resolvers = {
     },
     saveBook: async (parent, args, context) => {
       if (context.user) {
-        //   const savedBook = await Book.create({ ...args, username: context.user.username });
-
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          // take the input type body as the arguement
+          // take the input type to replace "body" as the arguement
           { $addToSet: { savedBooks: args.input } },
           { new: true, runValidators: true }
         );
